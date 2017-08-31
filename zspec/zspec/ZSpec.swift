@@ -85,27 +85,6 @@ class ZSpec {
         specName = readLine(strippingNewline:true) ?? specName
         print("请输入描述:")
         summary = readLine(strippingNewline:true) ?? summary
-        homepage = UserDefaults.standard[ZSpec.Name.homePage]
-        if homepage == nil {
-            print("请设置首页:")
-            homepage = readLine(strippingNewline: true) ?? homepage
-        }
-        if authorName == nil {
-            print("请先设置作者名称:")
-            authorName = readLine(strippingNewline: true) ?? authorName
-        }
-        if authorEmail == nil {
-            print("请先设置作者的邮箱:")
-            authorEmail = readLine(strippingNewline: true) ?? authorEmail
-        }
-        if source == nil {
-            print("请先设置 Spec源:")
-            source = readLine(strippingNewline: true) ?? source
-        }
-        license = UserDefaults.standard[ZSpec.Name.license] ?? license
-        authorName = UserDefaults.standard[ZSpec.Name.authorName]
-        authorEmail = UserDefaults.standard[ZSpec.Name.authorEmail]
-        source = UserDefaults.standard[ZSpec.Name.source]
         save()
     }
     
@@ -142,8 +121,30 @@ class ZSpec {
     }
     
     func save() {
-        guard check() else {
-            return
+        homepage = UserDefaults.standard[ZSpec.Name.homePage]
+        if homepage == nil {
+            print("请设置首页:")
+            homepage = readLine(strippingNewline: true) ?? homepage
+            UserDefaults.standard[ZSpec.Name.homePage] = homepage
+        }
+        license = UserDefaults.standard[ZSpec.Name.license] ?? license
+        authorName = UserDefaults.standard[ZSpec.Name.authorName]
+        if authorName == nil {
+            print("请先设置作者名称:")
+            authorName = readLine(strippingNewline: true) ?? authorName
+            UserDefaults.standard[ZSpec.Name.authorName] = authorName
+        }
+        authorEmail = UserDefaults.standard[ZSpec.Name.authorEmail]
+        if authorEmail == nil {
+            print("请先设置作者的邮箱:")
+            authorEmail = readLine(strippingNewline: true) ?? authorEmail
+            UserDefaults.standard[ZSpec.Name.authorEmail] = authorEmail
+        }
+        source = UserDefaults.standard[ZSpec.Name.source]
+        if source == nil {
+            print("请先设置 Spec源:")
+            source = readLine(strippingNewline: true) ?? source
+            UserDefaults.standard[ZSpec.Name.source] = source
         }
         var specContent:String = ""
         specContent += "Pod::Spec.new do |s|\n"
