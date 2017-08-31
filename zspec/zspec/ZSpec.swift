@@ -156,7 +156,7 @@ class ZSpec {
         specContent += "  s.author           = { '\(authorName!)' => '\(authorEmail!)' }\n"
         specContent += "  s.source           = { :svn => '\(source!)/\(specName!)', :tag => s.version.to_s }\n"
         specContent += "  s.ios.deployment_target = '\(deploymentTarget)'\n"
-        specContent += "  s.source_files = '\(specName!)/\(specName!)/Classes/**/*'"
+        specContent += "  s.source_files = '\(specName!)/\(specName!)/Classes/**/*'\n"
         for de in dependency {
             specContent += "  s.dependency '\(de)'\n"
         }
